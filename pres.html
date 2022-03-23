@@ -1,0 +1,128 @@
+<html>
+  <head>
+  
+    <script src="//aframe.io/releases/1.1.0/aframe.min.js"></script>
+    
+    <script src="//cdn.rawgit.com/donmccurdy/aframe-extras/v6.1.0/dist/aframe-extras.min.js">      </script>
+
+    <script src="aframe-physics-system.min.js"></script>
+    
+    <script src="clouds.js"></script>
+    <script src="helper.js"></script>
+    <script src="rain.js"></script>
+    <script src="bot.js"></script>
+    <script src="shoot.js"></script>
+    <script src="script.js"></script>
+    <script src="kinema.js"></script>
+    <script src="soundLibrary.js"></script>
+    
+  </head>
+  <body>
+  
+    <a-scene physics="debug: false">
+
+      <a-sound src="src: url(wind.mp3)" autoplay="true" position="0 0 0"></a-sound>
+
+
+
+    <!-- 3D Models -->
+      <a-assets>
+        <a-asset-item id = "bird" src="bird/scene.gltf"></a-asset-item>
+        <a-asset-item id = "Tree" src="Tree/scene.gltf"></a-asset-item>
+      </a-assets>
+
+      <a-gltf-model id="pigeon" src="#bird" position="350 200 -150" scale = ".75 .75 .75" rotation="0 180 0" animation-mixer="timeScale: 0.5"></a-gltf-model>
+
+      <a-gltf-model id="pigeon" src="#bird" position="-350 200 -150" scale = ".75 .75 .75" rotation="0 0 0" animation-mixer="timeScale: 0.5"></a-gltf-model>
+      
+      <a-gltf-model static-body id="maple" src="#Tree" position="-35 .5 -10" scale = ".1 .1 .1" rotation="0 -90 0" animation-mixer="timeScale: 0.5"></a-gltf-model>
+      
+      <a-gltf-model static-body id="maple" src="#Tree" position="-85 .5 40" scale = ".1 .1 .1" rotation="0 -90 0" animation-mixer="timeScale: 0.5"></a-gltf-model>
+    
+    <!-- Sky and Ground of Haven -->
+      <a-plane static-body src = "Pictures/floor.jpg" position = "-27.188 0 49.105" repeat = 1000,1000 position="0 0 -4" rotation="-90 0 0" width="150" height="150"></a-plane>
+      <!-- Screenshot image of floor from game and insert below -->
+      <a-sky src = "Pictures/sky.png" ></a-sky>
+
+     <!-- B Site & B Back -->
+        
+        <!-- Building -->
+        
+          <!-- Frame of Building -->
+          <a-box static-body position="-20 7 2" rotation="0 90 90" src = "Pictures/stone.jpeg" height = 25 width = 14></a-box>
+          <a-box static-body position="5 14 2" rotation="270 90 0" src = "Pictures/stone.jpeg" height = 50 width = 25></a-box>
+          <a-box static-body position="30 7 2" rotation="0 90 90" src = "Pictures/stone.jpeg" height = 25 width = 14></a-box>
+
+          <!-- Back of Building -->
+          <a-box static-body position="23 3 -10" rotation="0 0 90" src = "Pictures/stone.jpeg" height = 15 width = 22 depth = 2></a-box>
+          <a-box static-body position="-13 3 -10" rotation="0 0 90" src = "Pictures/stone.jpeg" height = 15 width = 22 depth = 2></a-box>
+          <a-box static-body position="15 7 -15" rotation="0 90 90" src = "Pictures/stone.jpeg" height = 10 width = 14 depth = 1></a-box>
+          <a-box static-body position="-5 7 -15" rotation="0 90 90" src = "Pictures/stone.jpeg" height = 10 width = 14 depth = 1></a-box>
+          <a-box static-body position="5 7 -20" rotation="0 180 180" src = "Pictures/stone.jpeg" height = 15 width = 20 depth = 1></a-box>    
+
+          <!-- Front of Building -->
+          <a-box static-body position="-13 3 13" rotation="0 0 90" src = "Pictures/stone.jpeg" height = 15 width = 22 depth = 2></a-box>
+          <a-box static-body position="23 3 13" rotation="0 0 90" src = "Pictures/stone.jpeg" height = 15 width = 22 depth = 2></a-box>
+
+        <!-- Site -->
+          <!-- Left of Site -->
+          <a-box  static-body position="-17 3 -7.5" rotation="0 90 0" src = "Pictures/box.png" height = 6 width = 6 depth = 6></a-box>
+          <a-box static-body position="-18 1.5 -4.0" rotation="0 90 0" src = "Pictures/box.png" height = 3 width = 3 depth = 3></a-box>
+
+          <!-- Right of Site -->
+          <a-box  static-body position="27 3 -3" rotation="0 90 0" src = "Pictures/box.png" repeat = 33 height = 6 width = 15 depth = 5></a-box>
+
+          <!-- Middle of Site -->
+          <a-box  static-body position="5 3 0" rotation="0 0 0" src = "Pictures/midwall.PNG" height = 10 width = 15 depth = 15></a-box>     
+
+      <!-- Mid -->
+
+          <!-- Road to Mid -->
+          <a-plane src = "Pictures/floor2.jpg" position="5 0.1 15" rotation="-90 90 0" width = 50 height = 20 ></a-plane>
+
+          <!-- Mid Courtyard -->
+          <a-plane src = "Pictures/floor2.jpg" position="5 0.11 40" rotation="-90 90 90" width= 70 height= 40 ></a-plane>
+      
+          <a-box  static-body position="45.35 15 40" rotation="0 90 0" src = "Pictures/wall.jpeg" height = 30 width = 125 depth = 2></a-box>
+          <a-box static-body position="-5 15 102.50" rotation="0 0 0" src = "Pictures/wall.jpeg" height = 30 width = 100 depth = 2></a-box>
+          <a-box static-body position="-56 15 83" rotation="0 90 0" src = "Pictures/wall.jpeg" height = 30 width = 40 depth = 2></a-box>
+          <a-box static-body position="-80 15 83" rotation="0 90 0" src = "Pictures/wall.jpeg" height = 30 width = 40 depth = 2></a-box>
+          <a-box static-body position="-90 15 64.250" rotation="0 0 0" src = "Pictures/wall.jpeg" height = 30 width = 20 depth = 2></a-box>
+          <a-box static-body position="-46 15 64.250" rotation="0 0 0" src = "Pictures/wall.jpeg" height = 30 width = 20 depth = 2></a-box>
+
+      <!-- Mid Windows -->
+
+        <!-- Windows -->
+        <a-box static-body position="-13 10 50" rotation="0 0 0" src = "Pictures/stone.jpeg" height = 20 width = 10 depth = 2></a-box>
+        <a-box static-body position="23 10 50" rotation="0 0 0" src = "Pictures/stone.jpeg" height = 20 width = 10 depth = 2></a-box>
+        <a-box static-body position="6 2 50" rotation="0 0 90" src = "Pictures/stone.jpeg" height = 35 width = 5 depth = 2></a-box>
+        <a-box static-body position="6 17.5 50" rotation="0 0 90" src = "Pictures/stone.jpeg" height = 35 width = 5 depth = 2></a-box>
+
+        <!-- Frame -->
+        <a-box static-body position="5 0 67" rotation="90 90 90" src = "Pictures/stone.jpeg" height = 35 width = 46 depth = 2></a-box>
+        <a-box static-body position="5 7 85" rotation="0 0 90" src = "Pictures/stone.jpeg" height = 46 width = 25 depth = 2></a-box> 
+        <a-box static-body position="-17 0 67" rotation="0 90 90" src = "Pictures/stone.jpeg" height = 35 width = 46 depth = 2></a-box>       
+        <a-box static-body position="27 0 67" rotation="0 90 90" src = "Pictures/stone.jpeg" height = 35 width = 46 depth = 2></a-box>
+        <a-box static-body position="5 23 67" rotation="90 90 90" src = "Pictures/stone.jpeg" height = 35 width = 46 depth = 2></a-box>
+
+      <!-- Mid Doors -->
+
+        <!-- Frame -->
+        <a-box static-body position="-90 7 2" rotation="0 90 90" src = "Pictures/wall.jpeg" height = 35 width = 25 depth = 2></a-box>
+        <a-box static-body position="-50 7 2" rotation="0 90 90" src = "Pictures/wall.jpeg" height = 35 width = 25 depth = 2></a-box>
+        <a-box static-body position="-70 7 -15" rotation="0 0 90" src = "Pictures/wall.jpeg" height = 40 width = 25 depth = 2></a-box> 
+        <a-box static-body position="-83.5 3 20" rotation="0 0 90" src = "Pictures/wall.jpeg" height = 15 width = 33 depth = 2></a-box>
+        <a-box static-body position="-56.5 3 20" rotation="0 0 90" src = "Pictures/wall.jpeg" height = 15 width = 33 depth = 2></a-box>
+
+    <!-- Camera and Cursor -->
+  <a-entity kinema-body="radius: 0.8" movement-controls="fly: true" position="0 0 4" look-controls>
+      <a-entity camera position="0 1.6 0" >
+          <a-cursor>
+          <a-image src="Pictures/gun2.png" position="0.5 -0.5 0"></a-image>
+        </a-cursor>
+      </a-entity>
+    </a-entity>
+      
+    </a-scene>
+  </body>
+</html>
